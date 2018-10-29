@@ -27,6 +27,9 @@
                     <h5><a class="text-dark" href="{% url 'blogs:home' %}" style="text-decoration: none">Blogs</a></h5>
                 </div>
                 <div class="col">
+                    <h5 class="text-center font-weight-bold"><a class="text-dark" href="/" style="text-decoration: none">{{settings.PARENT_SITE_NAME}}</a></h5>
+                </div>
+                <div class="col">
                     {% if user.is_authenticated %}
                     <div class="dropdown float-right">
                         <a class="h5 text-secondary" href="#" role="button" id="optionsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
