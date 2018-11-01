@@ -1,0 +1,9 @@
+image: python:3.6
+
+before_script:
+  - pip install -r requirements/base.txt
+  - pip install -r test-requirements/test.txt
+
+tests:
+  script:
+    - pytest --cov
