@@ -30,10 +30,10 @@
 <div class="mt-5">
     <div class="row mb-5">
         <div class="col">
-            <h1 class="editable" id="heading">{{ blog.heading | safe}}</h1>
+            <h1 class="editable" id="heading" data-placeholder="Title" style="max-width: 700px !important;margin: auto">{{ blog.heading | safe}}</h1>
         </div>
     </div>
-    <div id="content" class="editable medium-editor-element" data-placeholder="Type content">{{ blog.content | safe }}</div>
+    <div id="content" class="content editable medium-editor-element" data-placeholder="Write your post...">{{ blog.content | safe }}</div>
 </div>
 
 {% endblock %}
@@ -47,7 +47,7 @@
         toolbar: {
             buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'html']
         },
-        autolink: true,
+        autoLink: true,
     });
 
     editor.subscribe('editableInput', function (event, editable) {

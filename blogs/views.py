@@ -37,8 +37,8 @@ class NewBlogView(LoginRequiredMixin, AuthorRequiredMixin, View):
         post = Post.objects.create(
             author=request.user.username,
             uuid=uuid.uuid4(),
-            heading="Click to edit Title",
-            content="<p>Click to edit body</p>"
+            heading="",
+            content=""
         )
         return redirect('blogs:edit', uuid=post.uuid)
 

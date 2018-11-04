@@ -9,28 +9,17 @@
 {% endblock %}
 
 {% block content %}
-<style>
-    .content p{
-        font-size: 1.25rem;
-    }
-</style>
 
 <div class="mt-5">
-    <div class="row">
-        <div class="col">
-            <h1>{{ post.heading | safe }}</h1>
-        </div>
+    <div class="row" style="max-width: 700px !important;margin: auto">
+        <h1>{{ post.heading | safe }}</h1>
     </div>
-    <div class="row mb-5">
-        <div class="col">
-            <div class="row">
-                <div class="col-12 col-md-2">
-                    <i class="far fa-calendar-alt"></i> {{ post.published_on | date:"DATE_FORMAT" }}
-                </div>
-                <div class="col-12 col-md-3">
-                    <i class="fa fa-user"></i></i> {{post.author}}
-                </div>
-            </div>
+    <div class="row mb-5" style="max-width: 700px !important;margin: auto">
+        <div class="col-6 col-md-3 px-0">
+            <i class="far fa-calendar-alt"></i> {{ post.published_on | date:"DATE_FORMAT" }}
+        </div>
+        <div class="col-6 col-md-3 px-0">
+            <i class="fa fa-user"></i></i> {{post.author}}
         </div>
     </div>
     <div class="content">{{ post.content | safe }}</div>
