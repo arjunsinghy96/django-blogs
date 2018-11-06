@@ -12,7 +12,7 @@ setup(
     name='djangoblogs',
     description='Django blogging with medium style editor',
     long_description=long_description,
-    url='https://github.com/arjunsinghy96/django-blogs',
+    url='https://github.com/arjunsinghy96/djangoblogs',
     author='Arjun Singh Yadav',
     author_email='arjunsinghy96@gmail.com',
     license='MIT',
