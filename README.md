@@ -20,7 +20,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-2. Include the `django-blogs` URLconf in your project urls.py:
+2. Include the `djangoblogs` URLconf in your project urls.py:
 ```python
 path('blogs/', include('blogs.urls')),
 ```
