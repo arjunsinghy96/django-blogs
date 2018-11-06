@@ -16,6 +16,9 @@ class Post(models.Model):
     published_on = models.DateTimeField(null=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self): # pragma: no cover
+        return self.slug
+
     class Meta:
         get_latest_by = '-published_on'
         ordering = ('-published_on', '-created_on')
@@ -27,6 +30,28 @@ class Author(models.Model):
         on_delete=models.CASCADE,
         null=True)
     is_author = models.BooleanField(default=False)
+
+    def __str__(self): # pragma: no cover
+        return self.user.username
+
+class Upvote(models.Model):
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE
+    )
+    fingerprint = models.CharField(max_length=128)
+    is_upvoted = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self): # pragma: no cover
+        return "{}:{}".format(
+            self.post.slug,
+            self.fingerprint
+        )
+
+    class Meta:
+        unique_together = ('post', 'fingerprint')
+        ordering = ('-created_at',)
 
 
 @receiver(post_save, sender=User)

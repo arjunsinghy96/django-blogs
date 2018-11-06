@@ -12,4 +12,5 @@ urlpatterns = [
     path('<slug:slug>/', views.BlogReadView.as_view(), name="read"),
     path('<uuid:uuid>/publish/', views.BlogPublishView.as_view(), name="publish"),
     path('<uuid:uuid>/delete/', views.BlogDeleteView.as_view(), name="delete"),
+    path('upvote/<uuid:uuid>/', views.UpvoteView.as_view(), name="upvote"),
 ]

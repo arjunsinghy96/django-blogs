@@ -8,6 +8,12 @@ main {
   flex: 1 0 auto;
 }
 
+.upvote-btn{
+  text-decoration: none;
+  color: red;
+  cursor: pointer;
+}
+
 .content {
   margin: auto;
   display: block;

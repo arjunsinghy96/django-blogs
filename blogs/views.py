@@ -9,7 +9,7 @@ from django.http import HttpResponse, JsonResponse
 from django.utils.text import slugify
 from django.utils import timezone
 
-from .models import Post
+from .models import Post, Upvote
 from .mixins import AuthorRequiredMixin
 from .settings import settings as app_settings
 
@@ -96,8 +96,10 @@ class BlogReadView(View):
             slug=slug,
             is_deleted=False,
             is_published=True)
+        upvote_count = post.upvote_set.filter(is_upvoted=True).count()
         return render(request, 'django-blogs/blog.html', {
             'post': post,
+            'upvote_count': upvote_count,
             **common_context
         })
 
@@ -125,3 +127,32 @@ class BlogDeleteView(LoginRequiredMixin, AuthorRequiredMixin, View):
         post.is_deleted = True
         post.save()
         return redirect("blogs:home")
+
+class UpvoteView(View):
+
+    def get(self, request, uuid):
+        data = request.GET
+        if not data.get('fingerprint', ''):
+            return HttpResponse(status=400)
+        upvote, created = Upvote.objects.get_or_create(
+            post_id=uuid,
+            fingerprint=data['fingerprint']
+        )
+        return JsonResponse(
+            {
+            'is_upvoted': upvote.is_upvoted
+            },
+            status=200
+        )
+
+    def post(self, request, uuid):
+        data = request.POST
+        if not data.get('fingerprint', ''):
+            return HttpResponse(status=400)
+        upvote, created = Upvote.objects.get_or_create(
+            post_id=uuid,
+            fingerprint=data['fingerprint']
+        )
+        upvote.is_upvoted = not upvote.is_upvoted
+        upvote.save()
+        return HttpResponse(status=200)
