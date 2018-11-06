@@ -29,4 +29,4 @@ path('blogs/', include('blogs.urls')),
 
 ## Contributing
 
-Read the contribution guide [here](./contirbution.md)
+Read the contribution guide [here](/contirbution)
